@@ -22,7 +22,7 @@ pages = soup.find_all(attrs={'class': 'swiper-slide'})
 page_num = len(pages)
 print(page_num)
 
-f = open('/home/leechau/down.txt', 'w', encoding='utf-8')
+f = open('/home/user/down.txt', 'w', encoding='utf-8')
 for i in range(1, page_num+1):
     link_url = "http://paper.people.com.cn/rmrb/pc/layout/%s%s/%s/node_%02d.html" % (today[0:4],today[5:7],today[8:10],i)
     link_html = requests.get(link_url, headers=headers).content
@@ -30,7 +30,7 @@ for i in range(1, page_num+1):
     down_url = link_soup.find_all(attrs={'class': 'right btn'})[0].a['href']
     down_url = down_url.replace("../../..", "http://paper.people.com.cn/rmrb/pc")
     #print(down_url)
-    filename = "/home/leechau/rmrb/rmrb%s%s%s%02d.pdf" % (today[0:4],today[5:7],today[8:10],i)
+    filename = "/home/user/rmrb/rmrb%s%s%s%02d.pdf" % (today[0:4],today[5:7],today[8:10],i)
     #print(filename)
     wget.download(down_url, filename)
     f.write(down_url + "\n")
